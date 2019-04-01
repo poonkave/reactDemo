@@ -1,12 +1,12 @@
-﻿class Item extends React.Component {
+class Item extends React.Component {
     constructor(props) {
         super(props);
-        this.removeItem = this.removeItem.bind(this)
+        this.handleRemoveItem = this.handleRemoveItem.bind(this)
     }
 
-    removeItem(e) {
+    handleRemoveItem(e) {
         e.preventDefault();
-        this.props.removeItem(this.props.item.id);
+        this.props.onRemoveItem(this.props.item.id);
     }
 
     render() {
@@ -15,9 +15,9 @@
                 <span className="cart-icon">
                     <Quantity
                         quantity={this.props.item.qty}
-                        updateQuantity={this.props.updateQuantity}
+                        onUpdateQty={this.props.onUpdateQty}
                         id={this.props.item.id} />
-                    <a href="#" onClick={(e) => this.removeItem(e)}><span className="glyphicon glyphicon-remove" ></span></a>
+                    <a href="#" onClick={(e) => this.handleRemoveItem(e)}><span className="glyphicon glyphicon-remove" ></span></a>
                 </span>
             </li>
         );
