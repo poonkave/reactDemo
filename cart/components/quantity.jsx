@@ -1,8 +1,3 @@
-﻿
-
-
-
-
 class Quantity extends React.Component {
     constructor(props) {
         super(props);
@@ -24,7 +19,7 @@ class Quantity extends React.Component {
 
     setQty(evt) {
         this.state.qty = evt.target.value;
-        this.props.updateQuantity(this.props.id, evt.target.value);
+        this.props.onUpdateQty(this.props.id, evt.target.value);
     }
 
     render() {
