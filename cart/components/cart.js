@@ -18,13 +18,13 @@ var Cart = (function (_React$Component) {
         this.state = {
             items: []
         };
-        this.removeItem = this.removeItem.bind(this);
-        this.updateQuantity = this.updateQuantity.bind(this);
+        this.handleRemoveItem = this.handleRemoveItem.bind(this);
+        this.handleUpdateQty = this.handleUpdateQty.bind(this);
     }
 
     _createClass(Cart, [{
-        key: "removeItem",
-        value: function removeItem(id) {
+        key: "handleRemoveItem",
+        value: function handleRemoveItem(id) {
             var _this = this;
 
             this.setState(function (prevState) {
@@ -40,8 +40,8 @@ var Cart = (function (_React$Component) {
             });
         }
     }, {
-        key: "updateQuantity",
-        value: function updateQuantity(id, quantity) {
+        key: "handleUpdateQty",
+        value: function handleUpdateQty(id, quantity) {
             var _this2 = this;
 
             this.setState(function (prevState) {
@@ -66,8 +66,8 @@ var Cart = (function (_React$Component) {
                 "div",
                 null,
                 React.createElement(Items, { items: this.state.items,
-                    removeItem: this.removeItem,
-                    updateQuantity: this.updateQuantity }),
+                    onRemoveItem: this.handleRemoveItem,
+                    onUpdateQty: this.handleUpdateQty }),
                 this.state.items.length > 0 && React.createElement(
                     "button",
                     { type: "button", className: "btn btn-primary", onClick: function () {
