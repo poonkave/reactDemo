@@ -1,25 +1,14 @@
-class Item extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleRemoveItem = this.handleRemoveItem.bind(this)
-    }
-
-    handleRemoveItem(e) {
-        e.preventDefault();
-        this.props.onRemoveItem(this.props.item.id);
-    }
-
+class Items extends React.Component {
+    constructor(props) { super(props); }
     render() {
         return (
-            <li className="item list-group-item">{this.props.item.name}
-                <span className="cart-icon">
-                    <Quantity
-                        quantity={this.props.item.qty}
-                        onUpdateQty={this.props.onUpdateQty}
-                        id={this.props.item.id} />
-                    <a href="#" onClick={(e) => this.handleRemoveItem(e)}><span className="glyphicon glyphicon-remove" ></span></a>
-                </span>
-            </li>
+            <ul className="list-group">
+                {this.props.items.map(item => (
+                    <Item key={item.id} item={item}
+                        onRemoveItem={this.props.onRemoveItem}
+                        onUpdateQty={this.props.onUpdateQty} />
+                ))}
+            </ul>
         );
     }
 }
