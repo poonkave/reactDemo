@@ -6,6 +6,7 @@ class Cart extends React.Component {
         };
         this.handleRemoveItem = this.handleRemoveItem.bind(this)
         this.handleUpdateQty = this.handleUpdateQty.bind(this)
+        this.handleBuy = this.handleBuy.bind(this)
     }
     handleRemoveItem(id) {
         this.setState(prevState => {
@@ -31,6 +32,15 @@ class Cart extends React.Component {
             }
         }, () => this.props.onUpdateQty(id, quantity));
     }
+
+    handleBuy() {
+        let items;
+        this.setState(prevState => {
+            items = prevState.items;
+            return {}
+        }, () => this.props.onBuy(items));
+    }
+
     render() {
 
         return (
@@ -38,9 +48,8 @@ class Cart extends React.Component {
                 <Items items={this.state.items}
                     onRemoveItem={this.handleRemoveItem}
                     onUpdateQty={this.handleUpdateQty} />
-                {this.state.items.length > 0 &&
-                    <button type="button" className="btn btn-primary" onClick={() => this.props.onBuy(this.state.items)}>Buy</button>
-                }
+
+                <Footer itemsCount={this.state.items.length} onBuy={this.handleBuy}/>
             </div>
         );
     }
