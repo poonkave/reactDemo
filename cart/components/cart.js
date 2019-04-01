@@ -1,0 +1,84 @@
+"use strict";
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Cart = (function (_React$Component) {
+    _inherits(Cart, _React$Component);
+
+    function Cart(props) {
+        _classCallCheck(this, Cart);
+
+        _get(Object.getPrototypeOf(Cart.prototype), "constructor", this).call(this, props);
+        this.state = {
+            items: []
+        };
+        this.removeItem = this.removeItem.bind(this);
+        this.updateQuantity = this.updateQuantity.bind(this);
+    }
+
+    _createClass(Cart, [{
+        key: "removeItem",
+        value: function removeItem(id) {
+            var _this = this;
+
+            this.setState(function (prevState) {
+                var items = prevState.items.filter(function (item) {
+                    return item.id !== id;
+                });
+                return {
+                    items: items
+
+                };
+            }, function () {
+                return _this.props.onRemoveItem(id);
+            });
+        }
+    }, {
+        key: "updateQuantity",
+        value: function updateQuantity(id, quantity) {
+            var _this2 = this;
+
+            this.setState(function (prevState) {
+                var items = prevState.items.map(function (item) {
+                    if (item.id == id) item.qty = quantity;
+                    return item;
+                });
+                return {
+                    items: items
+
+                };
+            }, function () {
+                return _this2.props.onUpdateQty(id, quantity);
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this3 = this;
+
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(Items, { items: this.state.items,
+                    removeItem: this.removeItem,
+                    updateQuantity: this.updateQuantity }),
+                this.state.items.length > 0 && React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-primary", onClick: function () {
+                            return _this3.props.onBuy(_this3.state.items);
+                        } },
+                    "Buy"
+                )
+            );
+        }
+    }]);
+
+    return Cart;
+})(React.Component);
+
