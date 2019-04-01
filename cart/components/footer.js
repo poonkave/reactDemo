@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -20,10 +20,18 @@ var Footer = (function (_React$Component) {
     _createClass(Footer, [{
         key: "render",
         value: function render() {
+            var _this = this;
+
             return React.createElement(
-                "button",
-                { type: "button", "class": "btn btn-primary" },
-                "Buy"
+                "div",
+                null,
+                this.props.itemsCount > 0 && React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-primary", onClick: function () {
+                            return _this.props.onBuy();
+                        } },
+                    "Buy"
+                )
             );
         }
     }]);
