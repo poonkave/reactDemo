@@ -26,13 +26,13 @@ var Quantity = (function (_React$Component) {
     _createClass(Quantity, [{
         key: "increment",
         value: function increment() {
-            this.props.updateQuantity(this.props.id, ++this.state.qty);
+            this.props.onUpdateQty(this.props.id, ++this.state.qty);
         }
     }, {
         key: "decrement",
         value: function decrement() {
             if (this.state.qty === 0) return;
-            this.props.updateQuantity(this.props.id, --this.state.qty);
+            this.props.onUpdateQty(this.props.id, --this.state.qty);
         }
     }, {
         key: "setQty",
