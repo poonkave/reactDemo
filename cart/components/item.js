@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -15,14 +15,14 @@ var Item = (function (_React$Component) {
         _classCallCheck(this, Item);
 
         _get(Object.getPrototypeOf(Item.prototype), "constructor", this).call(this, props);
-        this.removeItem = this.removeItem.bind(this);
+        this.handleRemoveItem = this.handleRemoveItem.bind(this);
     }
 
     _createClass(Item, [{
-        key: "removeItem",
-        value: function removeItem(e) {
+        key: "handleRemoveItem",
+        value: function handleRemoveItem(e) {
             e.preventDefault();
-            this.props.removeItem(this.props.item.id);
+            this.props.onRemoveItem(this.props.item.id);
         }
     }, {
         key: "render",
@@ -38,12 +38,12 @@ var Item = (function (_React$Component) {
                     { className: "cart-icon" },
                     React.createElement(Quantity, {
                         quantity: this.props.item.qty,
-                        updateQuantity: this.props.updateQuantity,
+                        onUpdateQty: this.props.onUpdateQty,
                         id: this.props.item.id }),
                     React.createElement(
                         "a",
                         { href: "#", onClick: function (e) {
-                                return _this.removeItem(e);
+                                return _this.handleRemoveItem(e);
                             } },
                         React.createElement("span", { className: "glyphicon glyphicon-remove" })
                     )
