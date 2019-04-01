@@ -20,6 +20,7 @@ var Cart = (function (_React$Component) {
         };
         this.handleRemoveItem = this.handleRemoveItem.bind(this);
         this.handleUpdateQty = this.handleUpdateQty.bind(this);
+        this.handleBuy = this.handleBuy.bind(this);
     }
 
     _createClass(Cart, [{
@@ -58,9 +59,21 @@ var Cart = (function (_React$Component) {
             });
         }
     }, {
+        key: "handleBuy",
+        value: function handleBuy() {
+            var _this3 = this;
+
+            var items = undefined;
+            this.setState(function (prevState) {
+                items = prevState.items;
+                return {};
+            }, function () {
+                return _this3.props.onBuy(items);
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
-            var _this3 = this;
 
             return React.createElement(
                 "div",
@@ -68,13 +81,7 @@ var Cart = (function (_React$Component) {
                 React.createElement(Items, { items: this.state.items,
                     onRemoveItem: this.handleRemoveItem,
                     onUpdateQty: this.handleUpdateQty }),
-                this.state.items.length > 0 && React.createElement(
-                    "button",
-                    { type: "button", className: "btn btn-primary", onClick: function () {
-                            return _this3.props.onBuy(_this3.state.items);
-                        } },
-                    "Buy"
-                )
+                React.createElement(Footer, { itemsCount: this.state.items.length, onBuy: this.handleBuy })
             );
         }
     }]);
